@@ -1,5 +1,6 @@
 # jwt_backend
 public repo for JWT authentication app, server side
+to be used in conjunction with https://github.com/hygtfrde/jwt_frontend
 
 ## Dependencies and Library Packages
 Node.js is required
