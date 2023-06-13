@@ -1,8 +1,10 @@
+require('dotenv').config();
 const mongoose = require('mongoose');
-const DB_URL = process.env.REMOTE_EXAMPLE_DB_URI
-const REMOTE_EXAMPLE_DB_URI = '';
+const DB_URL = process.env.REMOTE_DB_URI
+const REMOTE_DB_URI = '_____';
 
-console.log('Setting up connection to: ', process.env.REMOTE_EXAMPLE_DB_URI)
+console.log('Setting up connection to: ', process.env.REMOTE_DB_URI)
+console.log('firebase config obj: ', process.env.FIREBASE_CONFIG)
 
 mongoose.connect(DB_URL, {
   useNewUrlParser: true,

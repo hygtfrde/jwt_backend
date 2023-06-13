@@ -1,0 +1,6 @@
+DEV_CLIENT_URL=http://localhost:3000
+DEV_SERVER_PORT=4000
+LOCAL_MONGO_PORT=mongodb://localhost:27017/jwt_auth_api
+REMOTE_DB_URI=
+
+FIREBASE_CONFIG=""
