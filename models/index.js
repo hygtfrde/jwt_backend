@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const DB_URL = process.env.REMOTE_EXAMPLE_DB_URI
+const REMOTE_EXAMPLE_DB_URI = '';
 
 console.log('Setting up connection to: ', process.env.REMOTE_EXAMPLE_DB_URI)
 

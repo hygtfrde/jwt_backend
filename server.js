@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 const app = express();
 const routes = require('./routes');
+const DEV_SERVER_PORT = 4000;
+const DEV_CLIENT_URL = 'http://localhost:3000';
 
 // ---------------------------------------- BodyParser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -20,7 +22,7 @@ app.use((req, res, next) => {
 
 // ---------------------------------------- CORS OPTIONS
 const corsOptions = {
-  origin: [process.env.DEV_CLIENT_URL], 
+  origin: [DEV_CLIENT_URL], 
   credentials: true, 
   optionsSuccessStatus: 200,
   methods: ['GET', 'POST', 'PUT'],
@@ -32,7 +34,7 @@ app.use(cors(corsOptions));
 
 // ------------------------------------------ ROUTES
 // GET Root Route
-app.get('/', (req, res) => res.send('<h1>Welcome to Auth API</h1>'));
+app.get('/', (req, res) => res.send('<h1>JWT Authentication MERN App</h1>'));
 
 // Auth Routes
 app.use('/api/v1/auth', routes.auth);
@@ -49,6 +51,6 @@ app.use((req, res) => {
 });
 
 // ---------------------------------------- START SERVER
-app.listen(process.env.DEV_SERVER_PORT, () => {
-  console.log(`Server running at http://localhost:${process.env.DEV_SERVER_PORT}`);
+app.listen(DEV_SERVER_PORT, () => {
+  console.log(`Server running at http://localhost:${DEV_SERVER_PORT}`);
 });
