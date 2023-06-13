@@ -21,6 +21,8 @@ Use `mongosh` to access DB cli or MongoDB Compass for GUI.
 List instances of mongodb on your machine:
 `mongod --dbpath /usr/local/var/mongodb/`
 
+For deployments outside of localhost, configure your remote or cloud mongo instance, then provide the URI to the .env variable `REMOTE_DB_URI` using `process.env`
+
 ### ENV file and creds
 You will need to provide a mongo connection URI that contains the username, password, provider, cluster, etc. For security reasons, the .env file here only provides local host port numbers.
 
