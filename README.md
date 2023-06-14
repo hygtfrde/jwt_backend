@@ -3,18 +3,18 @@ Repo for JWT authentication app, server side
 to be used in conjunction with https://github.com/hygtfrde/jwt_frontend
 
 # Dependencies and Library Packages
-Node.js is required, as well as NPM packages: <br>
-### bcryptjs <br>
+Node.js is required, as well as NPM packages:
+### bcryptjs
     - crypto encoding and hashing (for password storage) <br>
-### body-parser <br>
+### body-parser
     - format JSON requests and responses <br>
-### cors <br>
+### cors
     - configure allowed headers and access <br>
-### express <br>
+### express
     - node.js framework for API dev, HTTP/S <br>
-### jsonwebtoken <br>
+### jsonwebtoken
     - generate and verify token signatures, payloads, and secrets <br>
-### mongoose <br>
+### mongoose
     - Object Document Mapping to interface with Mongo DB <br>
     
 # How to install and run
