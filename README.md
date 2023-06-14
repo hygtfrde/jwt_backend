@@ -20,19 +20,22 @@ Node.js is required, as well as NPM packages:
 # How to install and run
 
 ### Backend API and Database
-In the /backend, first make sure that mongodb is installed. For example, if using Homebrew on Mac, start a DB instance with:
-`brew services start mongodb/brew/mongodb-community`
-and stop it with:
-`brew services stop mongodb/brew/mongodb-community`
+In the /backend, first make sure that mongodb is installed. For example, if using Homebrew on Mac, start a DB instance with: <br>
+`brew services start mongodb/brew/mongodb-community` <br>
+and stop it with: <br>
+`brew services stop mongodb/brew/mongodb-community` <br>
 Use `mongosh` to access DB cli or MongoDB Compass for GUI.
-List instances of mongodb on your machine:
-`mongod --dbpath /usr/local/var/mongodb/`
+List instances of mongodb on your machine: <br>
+`mongod --dbpath /usr/local/var/mongodb/` <br>
 Mongo can be installed other ways, by installing the binary for your OS and by compiling the program from source.
 For official binaries: https://www.mongodb.com/docs/manual/tutorial/install-mongodb-on-os-x/
 Or the steps to build from source:
 https://github.com/mongodb/mongo/blob/master/docs/building.md 
 
-For deployments outside of localhost, configure your remote or cloud mongo instance, then provide the URI to the .env variable `REMOTE_DB_URI` using `process.env`
+### User Access and Certificates
+For deployments outside of localhost, usernames and passwords can be used for login access. Configure your local or remote cloud mongo instance, then provide the URI to the .env variable `REMOTE_DB_URI` using `process.env` <br>
+The default Mongo port on my machine at the time of this writing is 27017. The `models/` folder contains info on establishing connections to databases.
+We can also configure access via signed certificates for Mongo. See the `certs` folder for more info.
 
 ### ENV file and creds
 You will need to provide a mongo connection URI that contains the username, password, provider, cluster, etc. See the `dotenv-example` file for existing variables being used.
