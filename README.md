@@ -35,7 +35,9 @@ https://github.com/mongodb/mongo/blob/master/docs/building.md
 ### User Access and Certificates
 For deployments outside of localhost, usernames and passwords can be used for login access. Configure your local or remote cloud mongo instance, then provide the URI to the .env variable `REMOTE_DB_URI` using `process.env` <br>
 The default Mongo port on my machine at the time of this writing is 27017. The `models/` folder contains info on establishing connections to databases.
-We can also configure access via signed certificates for Mongo. See the `certs` folder for more info.
+We can also configure access via signed certificates for Mongo. Generate your certificate by running: <br>
+`./certs/generation.sh` <br>
+See the `certs` folder for more info.
 
 ### ENV file and creds
 You will need to provide a mongo connection URI that contains the username, password, provider, cluster, etc. See the `dotenv-example` file for existing variables being used.
