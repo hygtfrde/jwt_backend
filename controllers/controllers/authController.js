@@ -61,70 +61,84 @@ const register = (req, res) => {
 
 // POST Login Route
 const login = (req, res) => {
-  // Validate email and password exist
-  if (!req.body.email || !req.body.password) {
-    return res
-      .status(400)
-      .json({ status: 400, message: "Please enter your username/email and password" });
+  const { email, password } = req.body;
+
+  // Validate email and password
+  if (!email || !password) {
+    return res.status(400).json({
+      status: 400,
+      message: "Please enter your email and password",
+    });
   }
+
   // Find the user account
-  db.User.findOne({ email: req.body.email })
+  db.User.findOne({ email })
     .select("+password")
     .exec((err, foundUser) => {
-      if (err)
-        return res.status(404).json({
-          status: 404,
-          message: "Cannot find that user. Please try again"
+      if (err) {
+        return res.status(500).json({
+          status: 500,
+          message: "An error occurred while finding the user. Please try again",
+          err,
         });
+      }
 
       if (!foundUser) {
-        return res
-          .status(400)
-          .json({ status: 400, message: "Email/username or password is incorrect" });
+        return res.status(400).json({
+          status: 400,
+          message: "Email or password is incorrect",
+        });
       }
-//============================================================================
-//======================== BCRYPT COMPARE
-      bcrypt.compare(req.body.password, foundUser.password, (err, isMatch) => {
-        if (err)
+
+      // Compare passwords using bcrypt
+      bcrypt.compare(password, foundUser.password, (err, isMatch) => {
+        if (err) {
           return res.status(500).json({
             status: 500,
-            message: "The passwords do not match. Please try again",
-            err: err
-        });
-//============================================================================
-        // check if the passwords match
+            message: "An error occurred while comparing passwords. Please try again",
+            err,
+          });
+        }
+
         if (isMatch) {
-          // create a json web token
-          let user = {
-            _id: foundUser._id
+          // Create a JSON Web Token (JWT)
+          const user = {
+            _id: foundUser._id,
           };
+
           jwt.sign(
-            // payload
             user,
-            // secret
             "waffles",
-            // registered & public claims
             {
-              expiresIn: "1h"
+              expiresIn: "1h",
             },
             (err, signedJwt) => {
+              if (err) {
+                return res.status(500).json({
+                  status: 500,
+                  message: "An error occurred while generating the JWT. Please try again",
+                  err,
+                });
+              }
+
               return res.status(200).json({
                 status: 200,
-                message: "Signature success on JWT!",
+                message: "Login successful",
                 id: foundUser._id,
-                signedJwt
+                signedJwt,
               });
             }
           );
         } else {
           return res.status(400).json({
             status: 400,
-            message: "Username or password is incorrect"
+            message: "Email or password is incorrect",
           });
         }
       });
     });
 };
+
 
 module.exports = {
   register,
