@@ -22,7 +22,7 @@ app.use((req, res, next) => {
 
 // ---------------------------------------- CORS OPTIONS
 const corsOptions = {
-  origin: [DEV_CLIENT_URL, 'https://jwt-frontend-197fc.web.app'], 
+  origin: [DEV_CLIENT_URL, 'https://jwt-frontend-197fc.web.app', 'https://jwt-backend-wg2m.onrender.com'], 
   credentials: true, 
   optionsSuccessStatus: 200,
   methods: ['GET', 'POST', 'PUT'],
