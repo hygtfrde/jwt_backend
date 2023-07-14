@@ -63,8 +63,14 @@ const register = (req, res) => {
 const login = (req, res) => {
   const { email, password } = req.body;
 
+  console.log('incoming login attempt');
+  console.log('email: ', email);
+  console.log('password: ', password);
+
+
   // Validate email and password
   if (!email || !password) {
+    console.log('missing inputs');
     return res.status(400).json({
       status: 400,
       message: "Please enter your email and password",
@@ -120,7 +126,7 @@ const login = (req, res) => {
                   err,
                 });
               }
-
+              console.log('no error in login, continue');
               return res.status(200).json({
                 status: 200,
                 message: "Login successful",
@@ -132,7 +138,7 @@ const login = (req, res) => {
         } else {
           return res.status(400).json({
             status: 400,
-            message: "Email or password is incorrect",
+            message: "Other email or password error encountered.",
           });
         }
       });
